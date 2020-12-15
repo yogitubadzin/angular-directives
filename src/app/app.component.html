@@ -1,0 +1,24 @@
+<nav>
+  <ul class="pagination">
+    <li class="page-item" [appCssClass]="{ disabled: isPreviousPageDisabled() }">
+      <a class="page-link" (click)="changePageToPrevious()"> Prev</a>
+    </li>
+    <ng-container *appRepeater="images.length; let i = index">
+      <li
+        class="page-item"
+        [appCssClass]="{ active: isActive(i) }"
+        *ngIf="checkIndex(i)"
+      >
+        <a (click)="currentPage = i" class="page-link">{{ i + 1 }}</a>
+      </li>
+    </ng-container>
+    <li class="page-item" [appCssClass]="{ disabled: isNextPageDisabled() }">
+      <a class="page-link" (click)="changePageToNext()">Next</a>
+    </li>
+  </ul>
+</nav>
+
+<div>
+  <h4>{{ getTitle() }}</h4>
+  <img [src]="getUrl()" />
+</div>
